@@ -37,4 +37,7 @@ EXPOSE 8888
 RUN jupyter server --generate-config && \
     echo "c.ServerApp.default_url = '/lab'" >> /home/jupyter/.jupyter/jupyter_server_config.py
 
+ENV JUPYTER_TOKEN=""
+RUN echo "c.ServerApp.token = os.environ.get('JUPYTER_TOKEN', '')" >> /home/jupyter/.jupyter/jupyter_server_config.py
+
 CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser"]
