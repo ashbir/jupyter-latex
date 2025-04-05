@@ -12,6 +12,9 @@ RUN apt-get update && \
     bash build-essential python3-dev libblas-dev liblapack-dev gfortran \
     libfreetype6-dev libpng-dev texlive-latex-extra texlive-fonts-recommended \
     dvipng cm-super ghostscript ttf-mscorefonts-installer fontconfig \
+    texlive texlive-latex-extra texlive-fonts-extra \
+    texlive-latex-recommended texlive-science \
+    tipa libpango1.0-dev libcairo2-dev ffmpeg \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && fc-cache -f -v
@@ -25,7 +28,8 @@ RUN useradd -m -u 1000 -s /bin/bash jupyter && \
 
 # Install Python packages
 RUN pip install --no-cache-dir \
-    terminado numpy scipy pandas matplotlib jupyterlab scienceplots
+    terminado numpy scipy pandas matplotlib jupyterlab scienceplots \
+    manim IPython
 
 
 # Final setup
